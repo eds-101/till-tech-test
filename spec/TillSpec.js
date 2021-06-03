@@ -5,8 +5,8 @@ describe("Hipster Till", function() {
     till = new Till();
   });
 
-  it("should print the date and time the receipt was ordered", function() {
-
+  it("should provide price of an item", function() {
+      expect(till.order('Cafe Latte')).toBe(4.75)
   });
 
 });
