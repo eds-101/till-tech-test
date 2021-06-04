@@ -6,12 +6,20 @@ describe("Hipster Till", function() {
   });
 
   it("should provide price of an item", function() {
-      expect(till.order('Cafe Latte')).toBe(4.75)
+      expect(till.orderItem('Cafe Latte')).toBe(4.75)
   });
 
-  it("should calculate price of an item", function() {
-      expect(till.order('Cafe Latte', 2)).toBe(9.5)
+  it("should calculate price of an item, based on order quantity", function() {
+      expect(till.orderItem('Cafe Latte', 2)).toBe(9.5)
   });
+  
+  it("should sum the price of a full order", function() {
+    till.orderItem("Double Espresso", 2)  
+    till.orderItem("Choc Mudcake", 2)  
+    till.orderItem("Cortado")  
+    expect(till.totalPrice()).toEqual(24.85)
+  });
+
 
 });
 
