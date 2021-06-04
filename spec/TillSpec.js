@@ -9,6 +9,10 @@ describe("Hipster Till", function() {
       expect(till.order('Cafe Latte')).toBe(4.75)
   });
 
+  it("should calculate price of an item", function() {
+      expect(till.order('Cafe Latte', 2)).toBe(9.5)
+  });
+
 });
 
 const jsonData = [

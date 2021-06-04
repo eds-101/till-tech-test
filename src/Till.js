@@ -3,8 +3,8 @@ class Till {
     this.items = data[0].prices[0]
   }
   
-  order(item) {
-      return this.items[item]
+  order(item, quantity = 1) {
+    return this.items[item] * quantity
   }
   
 }
