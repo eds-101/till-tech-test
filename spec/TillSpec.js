@@ -17,9 +17,37 @@ describe("Hipster Till", function() {
     till.orderItem("Double Espresso", 2)  
     till.orderItem("Choc Mudcake", 2)  
     till.orderItem("Cortado")  
-    expect(till.totalPrice()).toEqual(24.85)
+    expect(till.subTotal()).toEqual(24.85)
+  });
+  
+  it("should calculate tax on an order", function() {
+    // how to isolate this test
+      till.orderItem("Affogato", 2)  
+      till.orderItem("Tea") 
+      expect(till.taxTotal()).toEqual(Number((((14.80 * 2) + 3.65) * 0.0864).toFixed(2)))
   });
 
+  it("should calculate a total price on an order", function() {
+    // how to isolate this test
+      till.orderItem("Cafe Latte")  
+      till.orderItem("Flat White", 2)  
+      till.orderItem("Cappucino")  
+      till.orderItem("Choc Mudcake", 2)  
+      till.orderItem("Choc Mousse")  
+      till.orderItem("Affogato")  
+      till.orderItem("Tiramisu")  
+      expect(till.subTotal()).toEqual((65.30))
+      expect(till.taxTotal()).toEqual(5.64)
+      expect(till.Total()).toEqual((65.30 + 5.64))
+  });
+
+  // - Add functionality to take payment and calculate correct change. 
+  it("should take payment for an order and return correct change", function() {
+    let spy = spyOn(till, 'Total').and.returnValue(42);
+    till.Total()
+    // expect(spy).toHaveBeenCalled()
+    expect(till.processPayment(50)).toEqual(8)
+  })
 
 });
 
