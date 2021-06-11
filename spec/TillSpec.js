@@ -44,6 +44,14 @@ describe("Hipster Till", function() {
     expect(till.Total()).toEqual(67.5)
   })
 
+  it("should process 10% discount on muffins", function() {
+    till.orderItem("Blueberry Muffin")  
+    expect(till.subTotal()).toEqual(3.64)
+    till.orderItem("Muffin Of The Day")  
+    expect(till.subTotal()).toEqual(7.74)
+    
+  })
+
 });
 
 const jsonData = [

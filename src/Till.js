@@ -11,12 +11,26 @@ class Till {
     this.taxRate = 0.0864
     this.minOrderDiscount = 50
     this.orderDiscountRate = 0.05
+    this.itemDiscounts = [["Test", 0.4]["Muffin", 0.1]]
   }
   
   orderItem(item, quantity = 1) {
     let price = this.items[item] * quantity
+    if(item.includes("Muffin")) {
+      price = price - (price * 0.1)
+    }
     this.orderList.push([item, quantity, price])
     return price
+  }
+
+  addItemDiscount(item) {
+    let discount
+    this.itemDiscounts.forEach(function(e) {
+      if (item.includes(e[0])) {
+        discount = e[1]
+      }
+    })
+    return discount || 1
   }
   
   subTotal() {
