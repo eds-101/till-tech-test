@@ -28,16 +28,8 @@ describe("Hipster Till", function() {
   });
 
   it("should calculate a total price on an order", function() {
-    // how to isolate this test
-      till.orderItem("Cafe Latte")  
-      till.orderItem("Flat White", 2)  
-      till.orderItem("Cappucino")  
-      till.orderItem("Choc Mudcake", 2)  
-      till.orderItem("Choc Mousse")  
-      till.orderItem("Affogato")  
-      till.orderItem("Tiramisu")  
-      expect(till.subTotal()).toEqual((65.30))
-      expect(till.taxTotal()).toEqual(5.64)
+      spyOn(till, 'subTotal').and.returnValue(65.30)
+      spyOn(till, 'taxTotal').and.returnValue(5.64)
       expect(till.Total()).toEqual((65.30 + 5.64 - till.orderDiscount()))
   });
 
