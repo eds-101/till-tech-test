@@ -38,15 +38,23 @@ describe("Hipster Till", function() {
       till.orderItem("Tiramisu")  
       expect(till.subTotal()).toEqual((65.30))
       expect(till.taxTotal()).toEqual(5.64)
-      expect(till.Total()).toEqual((65.30 + 5.64))
+      expect(till.Total()).toEqual((65.30 + 5.64 - till.orderDiscount()))
   });
 
-  // - Add functionality to take payment and calculate correct change. 
   it("should take payment for an order and return correct change", function() {
-    let spy = spyOn(till, 'Total').and.returnValue(42);
+    spyOn(till, 'Total').and.returnValue(42);
     till.Total()
     // expect(spy).toHaveBeenCalled()
     expect(till.processPayment(50)).toEqual(8)
+  })
+
+  it("should process 5% discount on order over $50", function() {
+    spyOn(till, 'subTotal').and.returnValue(70)
+    till.subTotal()
+    expect(till.orderDiscount()).toEqual(3.5)
+    spyOn(till, 'taxTotal').and.returnValue(1)
+    expect(till.Total()).toEqual(67.5)
+    
   })
 
 });

@@ -9,6 +9,8 @@ class Till {
     this.items = data[0].prices[0]
     this.orderList = []
     this.taxRate = 0.0864
+    this.minOrderDiscount = 50
+    this.orderDiscountRate = 0.05
   }
   
   orderItem(item, quantity = 1) {
@@ -22,29 +24,36 @@ class Till {
     for(let i = 0; i < this.orderList.length; i++ ) {
       subTotal += this.orderList[i][2]
     }
-    return Number(subTotal.toFixed(2))
+    return this.numToCurrency(subTotal)
   }
 
   taxTotal() {
     const subTotal = this.subTotal()
-    let taxTotal = subTotal * this.taxRate
-    return Number(taxTotal.toFixed(2))
+    const taxTotal = subTotal * this.taxRate
+    return this.numToCurrency(taxTotal)
+  }
+
+  orderDiscount() {
+    if (this.subTotal() < this.minOrderDiscount) {
+      return 0
+    }
+    else {
+      return this.numToCurrency(this.subTotal() * 0.05)
+    }
   }
 
   Total() {
-    const total = this.taxTotal() + this.subTotal()
-    return Number(total.toFixed(2))
+    const total = this.taxTotal() + this.subTotal() - this.orderDiscount()
+    return this.numToCurrency(total)
   }
 
   processPayment(cashValue) {
     const change = cashValue - this.Total()
-    return Number(change.toFixed(2))
+    return this.numToCurrency(change)
   }
 
+  numToCurrency(value){
+    return Number((value).toFixed(2))
+  }
 
 }
-
-// Total() {
-//   const total = this.taxTotal + this.subTotal
-//   return Number(total.toFixed(2))
-// }
