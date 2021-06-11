@@ -16,12 +16,9 @@ class Till {
   
   orderItem(item, quantity = 1) {
     let price = this.items[item] * quantity
-    console.log(price)
-    console.log(this.addItemDiscount(item))
     if(this.addItemDiscount(item)){
       price = price - (price * this.addItemDiscount(item))
     }
-    console.log(price)
     this.orderList.push([item, quantity, price])
     return price
   }
@@ -62,7 +59,7 @@ class Till {
   }
 
   Total() {
-    const total = this.taxTotal() + this.subTotal() - this.orderDiscount()
+    let total = this.subTotal() - this.orderDiscount()
     return this.numToCurrency(total)
   }
 
