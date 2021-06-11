@@ -21,9 +21,7 @@ describe("Hipster Till", function() {
   });
   
   it("should calculate tax on an order", function() {
-    // how to isolate this test
-      till.orderItem("Affogato", 2)  
-      till.orderItem("Tea") 
+      spyOn(till, 'subTotal').and.returnValue(33.25)
       expect(till.taxTotal()).toEqual(Number((((14.80 * 2) + 3.65) * 0.0864).toFixed(2)))
   });
 
@@ -36,17 +34,14 @@ describe("Hipster Till", function() {
   it("should take payment for an order and return correct change", function() {
     spyOn(till, 'Total').and.returnValue(42);
     till.Total()
-    // expect(spy).toHaveBeenCalled()
     expect(till.processPayment(50)).toEqual(8)
   })
 
   it("should process 5% discount on order over $50", function() {
     spyOn(till, 'subTotal').and.returnValue(70)
-    till.subTotal()
     expect(till.orderDiscount()).toEqual(3.5)
     spyOn(till, 'taxTotal').and.returnValue(1)
     expect(till.Total()).toEqual(67.5)
-    
   })
 
 });
