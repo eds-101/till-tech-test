@@ -1,9 +1,3 @@
-// const sourceData = new Request('../hipsterCoffee.json')
-
-// fetch(sourceData)
-//   .then(res => res.json())
-//   .then(data => console.log(data))
-
 class Till {
   constructor(data) {
     this.items = data[0].prices[0]
@@ -27,10 +21,8 @@ class Till {
     let discount = 1
     this.itemDiscounts.forEach(function(e) {
       if (item.includes(e[0])) {
-        // console.log(item, e[0], e[1])
         discount = e[1]
       }
-      // console.log(item.includes(e[0]))
     })
     if (discount != 1) {return discount}
   }

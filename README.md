@@ -1,6 +1,6 @@
 Till tech test tbc
 
-* Notes - tax is calculated but not charged
+* Notes - rounded up the subtotal
 
 Till tech test
 ==============
