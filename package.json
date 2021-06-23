@@ -1,0 +1,26 @@
+{
+  "name": "till-tech-test",
+  "version": "1.0.0",
+  "description": "Till tech test tbc",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eds-101/till-tech-test.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eds-101/till-tech-test/issues"
+  },
+  "homepage": "https://github.com/eds-101/till-tech-test#readme",
+  "devDependencies": {
+    "jasmine": "^3.7.0",
+    "nyc": "^15.1.0"
+  }
+}
