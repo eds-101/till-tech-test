@@ -1,4 +1,4 @@
-class Till {
+export default class Till {
   constructor(data) {
     this.items = data[0].prices[0]
     this.orderList = []
@@ -24,7 +24,9 @@ class Till {
         discount = e[1]
       }
     })
-    if (discount != 1) {return discount}
+    if (discount != 1) {
+      return discount
+    }
   }
   
   subTotal() {
